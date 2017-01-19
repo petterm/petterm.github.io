@@ -46,18 +46,41 @@ section {
 .experience__header {
 	font-size: 30px;
 	margin: 15px 0;
-	padding: 5px 0;
 	border-bottom: 2px solid #BBB;
 	overflow: auto;
 }
 
 .experience__header h2 {
 	float: left;
+	font-size: 30px;
+	padding: 6px 0;
 }
 
 .experience__header .work-img {
 	float: right;
+	height: 100%;
+	width: 40%;
+	max-width: 300px;
 }
+
+.experience__header .rg-logo {
+	background-image: url('rg-logo.png');
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: cover;
+	height: 46px;
+	width: 100%;
+}
+
+.experience__header .cth-logo {
+	background-image: url('cth-logo.png');
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: cover;
+	height: 46px;
+	width: 100%;
+}
+
 .experience__subheader{
 	overflow: hidden;
 	line-height: 1em;
