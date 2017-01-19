@@ -1,6 +1,11 @@
 .todo {
 	font-weight: bold;
 	color: hotpink;
+	display: none;
+}
+
+.hidden {
+	display: none;
 }
 
 html {
