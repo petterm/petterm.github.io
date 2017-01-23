@@ -34,17 +34,31 @@ h1, h2, h3, h4, h5 {
 h1 {
 	text-align: center;
 	font-size: 20px;
-	margin: 70px 0 40px;
+	margin: 30px 0 20px;
 }
 
 section {
-	margin: 30px 40px;
+	margin: 20px 20px;
 }
 
-.contact tr:first {
-	padding-left: 10px;
-
+.intro {
+	overflow: auto;
 }
+
+.intro__profile {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.intro__profile img {
+	width: 70%;
+}
+
+.intro__contact td:first-child {
+	font-weight: bold;
+	padding-right: 10px;
+}
+
 .experience {
 }
 
@@ -68,28 +82,26 @@ section {
 	max-width: 300px;
 }
 
-.experience__header .rg-logo {
-	background-image: url('rg-logo.png');
+.experience__header .work-img div {
 	background-repeat: no-repeat;
-	background-position: left;
-	background-size: cover;
+	background-position: right;
+	background-size: contain;
 	height: 46px;
 	width: 100%;
 }
 
+.experience__header .rg-logo {
+	background-image: url('rg-logo.png');
+}
+
 .experience__header .cth-logo {
 	background-image: url('cth-logo.png');
-	background-repeat: no-repeat;
-	background-position: left;
-	background-size: cover;
-	height: 46px;
-	width: 100%;
 }
 
 .experience__subheader{
 	overflow: hidden;
 	line-height: 1em;
-	font-size: 20px;
+	font-size: 18px;
 	padding: 5px 0;
 	border-bottom: 1px solid #BBB;
 	margin-bottom: 20px; 
@@ -119,8 +131,49 @@ section {
 .experience__description {
 	overflow: normal;
 }
+
 .experience__description-context {
-	float: right;
-	font-style: italic;
 	color: #888;
+	display: block;
+	float: none;
+	font-style: italic;
+	font-weight: normal;
+	margin-top: 10px;
+}
+
+
+@media (min-width: 550px) {
+	h1 {
+		margin: 70px 0 40px;
+	}
+
+	.experience__subheader {
+		font-size: 20px;
+	}
+
+	.intro__profile {
+		float: right;
+		margin-bottom: 0;
+		text-align: right;
+		width: 30%;
+	}
+
+	.intro__profile img {
+		margin: 0;
+		width: 90%;
+	}
+
+	section {
+		margin: 30px 40px;
+	}
+
+	.experience__header .work-img div {
+		background-size: cover;
+	}
+
+	.experience__description-context {
+		float: right;
+		margin: 0;
+	}
+
 }
