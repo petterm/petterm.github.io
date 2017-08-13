@@ -27,7 +27,7 @@ a {
     text-decoration: none;
 }
 
-p {
+p, li {
 	line-height: 1.5;
 }
 
