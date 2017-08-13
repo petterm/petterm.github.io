@@ -177,3 +177,16 @@ section {
 	}
 
 }
+
+@media print {
+	.experience__header,
+	.experience__subheader {
+			page-break-after: avoid;
+	}
+
+	.experience__header,
+	.experience__subheader,
+	.experience__details tr {
+		page-break-inside: avoid;
+	}
+}
