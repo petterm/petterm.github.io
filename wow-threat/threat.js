@@ -665,15 +665,16 @@ function selectReport() {
 	el.style.borderColor = null;
 	if (!(reportId in reports)) reports[reportId]= new Report(reportId);
 	enableInput(false);
-	reports[reportId].fetch().then(() => {
+	return reports[reportId].fetch().then(() => {
 		for (let id in reports[reportId].fights) {
 			let f = reports[reportId].fights[id];
 			let el_f = document.createElement("option");
 			el_f.value = reportId + ":" + id;
 			el_f.textContent = f.name + " - " + id;
 			el_fightSelect.appendChild(el_f);
-			enableInput(true);
 		}
+		enableInput(true);
+		document.location.hash = 'reportId='+reportId;
 	}).catch(printError);
 }
 
@@ -686,7 +687,7 @@ function selectFight() {
 	let [reportId, fightId] = s.split(":");
 	let f = reports[reportId].fights[fightId]
 	enableInput(false);
-	f.fetch().then(() => {
+	return f.fetch().then(() => {
 		f.process();
 		let j = el_enemySelect.selectedIndex;
 		let prevSelection = "";
@@ -704,6 +705,12 @@ function selectFight() {
 		}
 		selectEnemy();
 		enableInput(true);
+
+		if (/fightId=\d+(?:\W|$)/.test(document.location.hash)) {
+			document.location.hash = document.location.hash.replace(/fightId=\d+/, 'fightId=' + fightId);
+		} else {
+			document.location.hash = document.location.hash + '&fightId=' + fightId;
+		}
 	}).catch(printError);
 }
 

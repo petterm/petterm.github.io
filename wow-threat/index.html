@@ -1,40 +1,98 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<script src="colors.js"></script>
-<script src="spells.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="threat.js"></script>
-<style>
-body {margin:0; min-height: 2000px}
-body, #input * {background-color: #222; color: #fff}
-#input :disabled {color: #555}
-table {border-collapse: collapse;}
-td, th {height: 20px; border: 1px solid white;padding: 3px;}
-#progressBarContainer {padding: 0;}
-#progressBar {height: 26px; background-color: #888; width: 0;}
-#input input, #input select {min-width:350px;width:100%;box-sizing:border-box}
-#input button {width:100px}
-#outputContainer {display: flex; flex-wrap: wrap}
-#threatTableContainer, #threatTableContainer table {margin: 20px}
-input.talent {width:30px}
-.colorPicker {padding:0;width:20px;height:20px;margin-right:5px}
-.checkbox {margin-left: 20px}
-</style>
+    <meta charset="UTF-8">
+    <script src="colors.js"></script>
+    <script src="spells.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="threat.js"></script>
+    <style>
+        body {margin:0; min-height: 2000px}
+        body, #input * {background-color: #222; color: #fff}
+        #input :disabled {color: #555}
+        table {border-collapse: collapse;}
+        td, th {height: 20px; border: 1px solid white;padding: 3px;}
+        #progressBarContainer {padding: 0;}
+        #progressBar {height: 26px; background-color: #888; width: 0;}
+        #input input, #input select {min-width:350px;width:100%;box-sizing:border-box}
+        #input button {width:100px}
+        #outputContainer {display: flex; flex-wrap: wrap}
+        #threatTableContainer, #threatTableContainer table {margin: 20px}
+        input.talent {width:30px}
+        .colorPicker {padding:0;width:20px;height:20px;margin-right:5px}
+        .checkbox {margin-left: 20px}
+    </style>
 </head>
+
 <body onload="scroll(0,0)">
-<div id="input">
-<table>
-<tr><td>Report ID</td><td><input type="text" id="reportSelect"></td><td><button onclick="selectReport()">Fetch</button></td></tr>
-<tr><td>Fight</td><td><select id="fightSelect"></select></td><td><button onclick="selectFight()">Fetch/Refresh</button></td></tr>
-<tr><td>Enemy</td><td colspan="2"><select id="enemySelect" onchange="selectEnemy()"></select></td></tr>
-<tr><td>Target</td><td colspan="2"><select id="targetSelect" onchange="selectTarget()"></select></td></tr>
-</table>
-</div>
-<div id="outputContainer">
-<div id="output"></div>
-<div id="threatTableContainer"></div>
-</div>
-</body></html>
+    <div id="input">
+        <p>Modified version of the Threat Plotting Tool by tilkku, found via Fight Club Discord, at <a href="http://82.130.21.56/threat/">http://82.130.21.56/threat/</a></p>
+        <table>
+            <tr>
+                <td>Report ID</td>
+                <td><input type="text" id="reportSelect"></td>
+                <td><button onclick="selectReport()">Fetch</button></td>
+            </tr>
+            <tr>
+                <td>Fight</td>
+                <td><select id="fightSelect"></select></td>
+                <td><button onclick="selectFight()">Fetch/Refresh</button></td>
+            </tr>
+            <tr>
+                <td>Enemy</td>
+                <td colspan="2"><select id="enemySelect" onchange="selectEnemy()"></select></td>
+            </tr>
+            <tr>
+                <td>Target</td>
+                <td colspan="2"><select id="targetSelect" onchange="selectTarget()"></select></td>
+            </tr>
+        </table>
+    </div>
+    <div id="outputContainer">
+        <div id="output"></div>
+        <div id="threatTableContainer"></div>
+    </div>
+
+    <script>
+        (() => {
+            document.onreadystatechange = function() {
+                if (document.readyState === 'interactive') {
+                    const hash = document.location.hash;
+                    let reportId;
+                    if (/reportId=(\w{16})(?:\W|$)/.test(hash)) {
+                        reportId = /reportId=(\w{16})(?:\W|$)/.exec(hash)[1];
+                    }
+                    let fightId;
+                    if (reportId && /fightId=(\d+)(?:\W|$)/.test(hash)) {
+                        fightId = /fightId=(\d+)(?:\W|$)/.exec(hash)[1];
+                    }
+
+                    if (reportId) {
+                        let reportSelect = document.querySelector("#reportSelect");
+                        reportSelect.value = reportId;
+                        selectReport().then(() => {
+                            console.log("test")
+                            let fightSelect = document.querySelector("#fightSelect");
+                            if (fightId) {
+                                let fightIndex = -1;
+                                let value = reportId + ":" + fightId
+                                for (let i = 0; i < fightSelect.options.length; i++) {
+                                    if (fightSelect.options[i].value == value) {
+                                        fightIndex = i;
+                                        break;
+                                    }
+                                }
+                                if (fightIndex !== -1) {
+                                    fightSelect.selectedIndex = fightIndex;
+                                    selectFight();
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        })()
+    </script>
+</body>
+</html>
