@@ -105,6 +105,10 @@ section {
 	width: 100%;
 }
 
+.experience__header .tf-logo {
+	background-image: url('tf-logo.png');
+}
+
 .experience__header .rg-logo {
 	background-image: url('rg-logo.png');
 }
@@ -140,11 +144,11 @@ section {
 }
 
 .experience__period {
-	width: 15%;	
+	width: 15%;
 }
 
 .experience__description {
-	overflow: normal;
+	overflow: auto;
 }
 
 .experience__description-context {
@@ -224,6 +228,10 @@ section {
 }
 
 @media print {
+	body {
+		box-shadow: none;
+	}
+
 	.work-img {
 		display: none;
 	}
@@ -237,11 +245,12 @@ section {
 
 	.experience__header {
 		border-top-width: 0;
+		box-shadow: none;
 	}
 	
 	.experience__header,
 	.experience__subheader {
-			page-break-after: avoid;
+		page-break-after: avoid;
 	}
 
 	.experience__header,
@@ -249,4 +258,8 @@ section {
 	.experience__details tr {
 		page-break-inside: avoid;
 	}
+
+	.experience__details {
+		width: auto;
+	}	
 }
