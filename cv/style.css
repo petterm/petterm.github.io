@@ -57,12 +57,21 @@ section {
 
 .intro__profile {
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .intro__profile img {
 	width: 70%;
 	border-radius: 5px;
+}
+
+.intro__flags {
+	font-size: 18px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.intro__flags img:first-child {
+	margin-right: 5px;
 }
 
 .intro__contact h3 {
@@ -178,6 +187,11 @@ section {
 		padding: 0 40px;
 	}
 
+	.intro__flags {
+		font-size: 24px;
+		float: right;
+	}
+
 	.intro__profile {
 		float: right;
 		margin-bottom: 0;
@@ -233,6 +247,10 @@ section {
 	}
 
 	.work-img {
+		display: none;
+	}
+
+	.intro__flags {
 		display: none;
 	}
 
