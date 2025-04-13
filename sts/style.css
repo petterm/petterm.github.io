@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    background-color: gray;
+    background-color: #808080;
     display: grid;
     grid-gap: 1px 1px;
     grid-template-columns: 50% 50%;
@@ -21,7 +21,7 @@ body {
 }
 
 .container > * {
-    background-color: rgb(20, 20, 20);
+    background-color: #141414;
     color: white;
     place-self: stretch;
     display: flex;
