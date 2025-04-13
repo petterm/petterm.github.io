@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slay the Spire HP tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="current">
+            <span class="total" id="currentTotal">156</span>
+            <span class="change hidden" id="currentChange">-16</span>
+        </div>
+        <button class="remove_one" onclick="window.modifyHP(-1)">
+            <span>1</span>
+        </button>
+        <button class="remove_ten" onclick="window.modifyHP(-10)">
+            <span>10</span>
+        </button>
+        <button class="add_one" onclick="window.modifyHP(1)">
+            <span>+</span>
+        </button>
+        <button class="add_ten" onclick="window.modifyHP(10)">
+            <span>+</span>
+        </button>
+    </div>
+</body>
+</html>
